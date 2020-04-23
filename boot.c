@@ -4,6 +4,7 @@ typedef void (* init_func)(void);
 extern void init_mmu_pt(void);
 extern void enable_mmu(void);
 extern void test_mmu(void);
+extern void test_printk(void);
 
 static init_func init[] ={
     init_mmu_pt,
@@ -18,5 +19,7 @@ void platform_bootup(void){
         init[i]();
 
     test_mmu();
+    test_printk();
+
     while(1);
 }

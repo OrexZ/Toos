@@ -10,9 +10,12 @@ EMULATOR_ACTION=-c $(TOP)/skyeye.conf
 CFLAGS= -O2 -g
 ASFLAGS= -O2 -g
 LDFLAGS= -T os.lds -Ttext 0x30000000
-#LDLIBS=-L /usr/lib/gcc/arm-none-eabi/6.3.1/
 
-OBJS=start.o init.o boot.o exception.o hello.o mmu.o
+#NOTE: please export the seaching path of your libgcc.a.
+# eg. export LIBGCC_A_PATH=/where/is/libgcc/path
+LDLIBS=-L$(LIBGCC_A_PATH)
+
+OBJS=start.o init.o boot.o exception.o hello.o mmu.o printk.o
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $<
@@ -20,8 +23,9 @@ OBJS=start.o init.o boot.o exception.o hello.o mmu.o
 	$(CC) $(ASFLAGS) -c $<
 
 Toos: $(OBJS)
-	#$(LD) -static -nostartfiles -nostdlib $(LDFLAGS) $^ -o $@ $(LDLIBS) -lgcc
-	$(LD) -static -nostartfiles -nostdlib $(LDFLAGS) $^ -o $@
+	#NOTE: Some division calculations require the support of the gcc library.
+	#unless you implement it yourself.
+	$(LD) -static -nostartfiles -nostdlib $(LDFLAGS) $^ -o $@ $(LDLIBS) -lgcc
 	$(OBJCOPY) -O binary $@ Toos.bin
 
 clean:

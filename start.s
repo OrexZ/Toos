@@ -24,7 +24,7 @@ _start:
     LDR pc, _vector_irq
     LDR pc, _vector_fiq
 
-// align > 2 ** n
+@ align > 2 ** n
 .align 2
 
 _vector_reset:

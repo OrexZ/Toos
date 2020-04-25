@@ -1,15 +1,15 @@
-.equ DISABLE_IRQ, 0b10000000
-.equ DISABLE_FIQ, 0b01000000
-.equ SYS_MOD,     0b00011111
-.equ IRQ_MOD,     0b00010010
-.equ FIQ_MOD,     0b00010001
-.equ SVC_MOD,     0b00010011
-.equ ABT_MOD,     0b00010111
-.equ UND_MOD,     0b00011011
+.equ DISABLE_IRQ,		0x80
+.equ DISABLE_FIQ,		0x40
+.equ SYS_MOD,			0x1f
+.equ IRQ_MOD,			0x12
+.equ FIQ_MOD,			0x11
+.equ SVC_MOD,			0x13
+.equ ABT_MOD,			0x17
+.equ UND_MOD,			0x1b
 
-// 8M memory
+/* 8M memory */
 .equ MEM_SIZE, 0x00800000
-// 0x3000000 is S3C2410 mach extend memory start-address
+/* 0x3000000 is S3C2410 mach extend memory start-address */
 .equ TXT_BASE, 0x30000000
 
 .equ _SVC_STACK, (TXT_BASE + MEM_SIZE - 4)

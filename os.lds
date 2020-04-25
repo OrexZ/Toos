@@ -2,7 +2,7 @@ OUTPUT_ARCH(arm)
 ENTRY(_start)
 SECTIONS
 {
-    . = 0x30000000;
+    . = 0x00000000;
     .text :
     {
         * (.startup)

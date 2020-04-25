@@ -204,8 +204,9 @@ int vsnprintf(char *buf, int size, const char *fmt, va_list args)
             ++str;
         }else if (FORMAT_TYPE(spec) == FORMAT_TYPE_STR){
             s = (char *) va_arg(args, char *);
-            while (str < end && *s!='\0')
+            while (str < end && *s!='\0'){
                 *str++ = *s++;
+            }
         }else{
             if (FORMAT_TYPE(spec) == FORMAT_TYPE_INT){
                 num = va_arg(args, int);
